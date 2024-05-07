@@ -1,0 +1,53 @@
+{% extends "books/base.html" %}
+{% load static %}
+{% block content %}
+<div class="book-details">
+  <div class="image">
+    <img class="book-image-details" src="{{ book.image.url }}" />
+    {% if request.user in book.like.all %}
+    <form action="{% url 'like_or_unlike' book_id=book.id %}" method="post">
+      {% csrf_token %}
+      <button type="submit" class="favourites-delete">Delete from my favourites</button>
+    </form>
+    {% else %}
+    <form action="{% url 'like_or_unlike' book_id=book.id %}" method="post">
+      {% csrf_token %}
+      <button type="submit" class="favourites-add">Add to my favourites</button>
+    </form>
+    {% endif %}
+    
+    {% if request.user in book.already_read.all %}
+    <form action="{% url 'already_read' book_id=book.id %}" method="post">
+      {% csrf_token %}
+      <button type="submit" class="already-read-delete">Delete from already read</button>
+    </form>
+    {% else %}
+    <form action="{% url 'already_read' book_id=book.id %}" method="post">
+      {% csrf_token %}
+      <button type="submit" class="already-read-add">Add to already read</button>
+    </form>
+    {% endif %}
+  </div>
+
+  <div class="book-details-details">
+    <div class="book-title-details">{{ book.title }}</div>
+    <div class="book-author-details">{{ book.author }}</div>
+    <div class="book-description-details">{{ book.description }}</div>
+    <a class="download" href="{{ book.pdf_file.url }}" >Click to download</a>
+  </div>
+</div>
+
+
+
+<h2 class="similar-text">Similar Books</h2>
+<div class="similar-books">
+  {% for b in similar_books %}
+    <a href="{% url 'book_detail' book_id=b.id %}">
+      <img class="similar-books-image" src="{{ b.image.url }}" />
+    </a>
+  {% endfor %}
+</div>
+
+
+
+{% endblock content %}

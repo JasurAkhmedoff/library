@@ -1,0 +1,12 @@
+{% extends "books/base.html" %} {% load static %} {% block content %}
+{% for category, subcategories in categories_with_subcategories.items %}
+    <h2 class="category">{{ category.name }}</h2>
+    <ul>
+        {% for subcategory in subcategories %}
+        <li class="subcategory"><a href="{% url 'subcategory_books' subcategory.id %}">{{ subcategory.name }}</a></li>
+        {% endfor %}
+    </ul>
+{% endfor %}
+
+
+{% endblock content %}

@@ -1,0 +1,111 @@
+.image{
+  display:flex;
+  justify-content: center;
+}
+
+
+.book-image-details{
+  height:40%;
+  width:15%;
+  margin-top:20px;
+}
+
+.book-details-details{
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top:20px;
+}
+
+.book-title-details{
+  font-size:40px;
+  font-weight:800;
+}
+
+.book-author-details{
+  margin-top:15px;
+  font-size:25px;
+  font-weight:500;
+}
+
+.book-description-details{
+  font-size:30px;
+  margin-top:60px;
+}
+
+.download{
+  margin-top:40px;
+  font-size:25px;
+}
+
+.favourites{
+  position:absolute;
+  height:30px;
+  right:100px;
+  top:60px;
+}
+
+
+.simillar-text{
+  margin-top:70px;
+  font-size:30px;
+  margin-left:10px;
+  margin-bottom:20px;
+}
+
+.simillar-books{
+    display:flex;
+}
+
+.simillar-books-image{
+  height:180px;
+  width:150px;
+  margin-right:10px;
+  margin-left:10px;
+}
+
+
+.book-image-details{
+  position:relative;
+}
+
+.favourites-add,.favourites-delete{
+  position:absolute;
+  color:white;
+  height:40px;
+  padding-right:5px;
+  padding-left:5px;
+  border:solid;
+  border-radius:5px;
+  top:70px;
+  right:80px;
+}
+
+.favourites-delete{
+  background-color:cornflowerblue;
+}
+
+.favourites-add{
+  background-color: lightcoral;
+}
+
+.already-read-delete,.already-read-add{
+  position:absolute;
+  color:white;
+  height:40px;
+  padding-right:5px;
+  padding-left:5px;
+  border:solid;
+  border-radius:5px;
+  top:120px;
+  right:80px;
+}
+
+.already-read-delete{
+  background-color:cornflowerblue;
+}
+
+.already-read-add{
+  background-color: lightcoral;
+}
+

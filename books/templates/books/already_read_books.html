@@ -1,0 +1,26 @@
+{% extends "books/base.html" %}
+{% load static %}
+{% block content %}
+<div class="books-list">
+  {% if already_read_books %}
+    {% for book in already_read_books %}
+      
+    <div class="book">  
+          <img class="book-image" src="{{ book.image.url }}">
+          <div class="book-details">
+            <div class="book-title">{{ book.title }}</div>
+            <div class="book-author">{{ book.author }}</div>
+          </div>
+      </div>
+      
+      <form action="{% url 'already_read' book_id=book.id %}" method="post">
+        {% csrf_token %}
+        <input type="hidden" name="action" value="delete">
+        <button class="alr-read" type="submit">Remove from Already Read</button>
+      </form>
+    {% endfor %}
+  {% else %}
+    <h1>No books marked as already read yet.</h1>
+  {% endif %}
+</div>
+{% endblock %}

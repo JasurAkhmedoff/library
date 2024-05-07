@@ -1,0 +1,76 @@
+{% extends "books/base.html" %}
+{% load static %}
+
+{% block content %}
+
+<div class="categories">
+  <a href="{% url 'category_list' %}">
+<button class="categ-is">Categories</button>
+  </a>
+</div>
+
+<div class="search">
+  <form method="get" action="{% url 'index' %}">
+    {% csrf_token %}
+    <input type="text" name="search_query">
+    <button type="submit">Search</button>
+  </form>
+ 
+</div>
+
+<div class="personal">
+  <button id="personalButton" class="per-but">Personal Account</button>
+  <!-- Dropdown list -->
+  <div class="dropdown">
+  <div class="dropdown-content">
+      <a href="{% url "user_favourites" %}">My favourites</a>
+      <a href="{% url "already_read_books" %}">Already read</a>
+      <a href="{% url "login" %}">Login</a>
+      <a href="{% url "register" %}">Register</a>
+      <a href="{% url "logout" %}">Logout</a>
+      
+     
+     
+      </div>
+  </div>
+</div>
+
+  <div class="books-list">
+  {% for book in page_obj %}
+    <a href="{% url 'book_detail' book_id=book.id %}" class="book-link">
+      <div class="book">  
+        <img class="book-image" src="{{ book.image.url }}">
+        <div class="book-details">
+          <div class="book-title">{{ book.title }}</div>
+          <div class="book-author">{{ book.author }}</div>
+        </div>
+      </div>
+    </a>
+  {% endfor %}
+  </div>
+
+  <script>
+    // Get the dropdown button and content
+    var dropdownBtn = document.querySelector('.dropbtn');
+    var dropdownContent = document.querySelector('.dropdown-content');
+    var personalButton = document.getElementById("personalButton");
+  
+    // Add event listener to toggle dropdown visibility
+    personalButton.addEventListener('click', function() {
+      dropdownContent.classList.toggle('show');
+    });
+  
+    // Close the dropdown when clicking outside of it
+    window.addEventListener('click', function(event) {
+      if (!event.target.matches('.dropbtn') && !event.target.matches('#personalButton')) {
+        if (dropdownContent.classList.contains('show')) {
+          dropdownContent.classList.remove('show');
+        }
+      }
+    });
+  </script>
+
+
+{% endblock content %}
+
+

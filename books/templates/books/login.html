@@ -1,0 +1,31 @@
+{% extends "books/base.html" %}
+{% load static %}
+
+{% block content %}
+
+{% for message in messages %}
+        {% if message.tags == 'error' %}
+            <p style="color: red;">{{ message }}</p>
+        {% endif %}
+    {% endfor %}
+
+
+
+<div class="form-container">
+  <h2 class="form-title">User Login</h2>
+  <form method="post">
+      {% csrf_token %}
+      <label for="username" class="form-label">Username:</label><br>
+      <input type="text" id="username" name="username" class="form-input"><br>
+      
+      <label for="password" class="form-label">Password:</label><br>
+      <input type="password" id="password" name="password" class="form-input"><br>
+      
+      <button type="submit" class="form-button">Login</button>
+      <a class="acc" href="{% url "register" %}">Don't have an account?</a>
+  </form>
+</div>
+
+
+
+{% endblock content %}
